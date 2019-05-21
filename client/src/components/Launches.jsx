@@ -21,14 +21,15 @@ const Launches = props => {
       Launches:
       <Query query={LAUNCHES_QUERY}>
         {({ loading, error, data }) => {
-          console.log(loading, data, error);
           if (loading) return <span>Loading</span>;
           if (error) console.log(error);
-          console.log(data);
           return (
             <span>
               {data.launches.map(launchItem => (
-                <LaunchItem launchItem={launchItem} />
+                <LaunchItem
+                  key={launchItem.flight_number}
+                  launchItem={launchItem}
+                />
               ))}
             </span>
           );
